@@ -53,6 +53,7 @@
                 font-weight: bold;
                 color: #333;
                 width: 30%;
+                white-space: nowrap;
             }
             td{
                 color: #666;
