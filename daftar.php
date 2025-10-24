@@ -81,10 +81,50 @@
             <h1>Data Registrasi User</h1>
             
             <?php if (isset($_POST['submit'])): ?>
+                <?php
+                $umur = intval($_POST['umur']);
+                $nama_lengkap = strtoupper(htmlspecialchars($_POST['nama_depan']) . ' ' . htmlspecialchars($_POST['nama_belakang']));
+                $asal_kota = strtoupper(htmlspecialchars($_POST['asal_kota']));
+                if ($umur < 10):
+                ?>
+                    <div style="background-color: #f8d7da; color: #721c24; padding: 15px; margin-bottom: 20px; border: 1px solid #f5c6cb; border-radius: 5px; text-align: center; font-weight: bold;">
+                        Error: Umur minimal 10 tahun!
+                    </div>
+                <?php else: ?>
+
                 <div class="success-message">
                     Registrasi Berhasil!
                 </div>
                 
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Lengkap</th>
+                            <th>Umur</th>
+                            <th>Asal Kota</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            for ($no = 2; $no <= $umur; $no += 2):
+                                if ($no == 4 || $no == 8):
+                                    continue;
+                                endif;
+                            ?>
+                            <tr>
+                                <td><?php echo $no; ?></td>
+                                <td><?php echo $nama_lengkap; ?></td>
+                                <td><?php echo $umur; ?> tahun</td>
+                                <td><?php echo $asal_kota; ?></td>
+                            </tr>
+                            <?php
+                            endfor;
+                            ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>                
+    
                 <div class="back-button">
                     <a href="index.html">Kembali ke Form Registrasi</a>
                 </div>
@@ -100,3 +140,6 @@
         </div>
     </body>
 </html>
+
+<?php
+
